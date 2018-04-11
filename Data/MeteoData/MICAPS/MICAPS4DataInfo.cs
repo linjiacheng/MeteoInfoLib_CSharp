@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using MeteoInfoC.Global;
+using MeteoInfoC.Projections;
 
 namespace MeteoInfoC.Data.MeteoData
 {
@@ -197,6 +198,21 @@ namespace MeteoInfoC.Data.MeteoData
             if ((string)dataList[16] == "-1" || (string)dataList[16] == "-2" || (string)dataList[16] == "-3")
             {
                 isLonLat = false;
+                if ((string) dataList[16] == "-1") // 兰勃托投影
+                {
+                    ProjectionInfo = KnownCoordinateSystems.Projected.Asia.AsiaLambertConformalConic;
+                    double[][] points = new double[3][];
+                    points[0] = new double[] { XDelt, YDelt };  //第一行最后一个点
+                    points[1] = new double[] { XMin, YMin };    //第一行第一个点
+                    points[2] = new double[] { XMax, YMax };    //最后一行最后一个点
+                    Reproject.ReprojectPoints(points, KnownCoordinateSystems.Geographic.World.WGS1984, ProjectionInfo, 0, 3);
+                    XMin = (float) points[1][0];
+                    XMax = (float) points[0][0];
+                    YMin = (float) points[0][1];
+                    YMax = (float) points[2][1];
+                    XDelt = (XMax - XMin) / (XNum - 1);
+                    YDelt = (YMax - YMin) / (YNum - 1);
+                }
             }
             else
             {

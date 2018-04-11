@@ -47,6 +47,10 @@ namespace MeteoInfoC.Data.MeteoData
         /// </summary>
         MICAPS_13,
         /// <summary>
+        /// MICAPS 13
+        /// </summary>
+        MICAPS_131,
+        /// <summary>
         /// HYSPLIT concentration
         /// </summary>
         HYSPLIT_Conc,

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.IO;
+using MeteoInfoC.Data.MeteoData.MICAPS;
 using MeteoInfoC.Projections;
 using MeteoInfoC.Layer;
 using MeteoInfoC.Legend;
@@ -400,19 +401,20 @@ namespace MeteoInfoC.Data.MeteoData
                 case "diamond 4":
                     MICAPS4DataInfo aM4DataInfo = new MICAPS4DataInfo();
                     aM4DataInfo.ReadDataInfo(aFile);
-                    if (aM4DataInfo.isLonLat)
-                    {
-                        DataType = MeteoDataType.MICAPS_4;
-                        DataInfo = aM4DataInfo;
-                        MissingValue = aM4DataInfo.MissingValue;
-                        InfoText = aM4DataInfo.GenerateInfoText();
-                        return true;                
-                    }
-                    else
-                    {
-                        //MessageBox.Show("Only longitude and latitude data were supported at present!", "Error");
-                        return false;
-                    }
+                    //if (aM4DataInfo.isLonLat)
+                    //{
+                    DataType = MeteoDataType.MICAPS_4;
+                    DataInfo = aM4DataInfo;
+                    MissingValue = aM4DataInfo.MissingValue;
+                    InfoText = aM4DataInfo.GenerateInfoText();
+                    ProjInfo = aM4DataInfo.ProjectionInfo;
+                    return true;                
+                    //}
+                    //else
+                    //{
+                    //    //MessageBox.Show("Only longitude and latitude data were supported at present!", "Error");
+                    //    return false;
+                    //}
                 case "diamond 7":
                     MICAPS7DataInfo aM7DataInfo = new MICAPS7DataInfo();
                     string[] trajFiles = new string[1];
@@ -445,6 +447,14 @@ namespace MeteoInfoC.Data.MeteoData
                     DataInfo = aM13DataInfo;
                     ProjInfo = aM13DataInfo.ProjectionInfo;
                     InfoText = aM13DataInfo.GenerateInfoText();
+                    return true;
+                case "diamond 131":
+                    MICAPS131DataInfo aM131DataInfo = new MICAPS131DataInfo();
+                    aM131DataInfo.ReadDataInfo(aFile);
+                    DataType = MeteoDataType.MICAPS_131;
+                    DataInfo = aM131DataInfo;
+                    ProjInfo = aM131DataInfo.ProjectionInfo;
+                    InfoText = aM131DataInfo.GenerateInfoText();
                     return true;
                 default:
                     MessageBox.Show("The data were supported at present! " + micapsDataType, "Error");

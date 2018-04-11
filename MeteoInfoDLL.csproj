@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MeteoInfoC</RootNamespace>
     <AssemblyName>MeteoInfoC</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <RunPostBuildEvent>OnOutputUpdated</RunPostBuildEvent>
     <FileUpgradeFlags>
@@ -33,6 +33,7 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -43,7 +44,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>MeteoInfoC.xml</DocumentationFile>
-    <PlatformTarget>x86</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
@@ -55,7 +56,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>MeteoInfoC.xml</DocumentationFile>
-    <PlatformTarget>x86</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
@@ -135,17 +136,19 @@
     <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HDF5DotNet, Version=1.0.2988.20613, Culture=neutral, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\HDF5DotNet.dll</HintPath>
+    <Reference Include="HDF5DotNet, Version=1.8.9.0, Culture=neutral, PublicKeyToken=a4952c8df86d6e8c, processorArchitecture=x86" Condition="'$(Platform)' == 'x86'">
+      <HintPath>..\packages\HDF5DotNet.x86.1.8.9\lib\net40\HDF5DotNet.dll</HintPath>
+    </Reference>
+    <Reference Include="HDF5DotNet, Version=1.8.9.0, Culture=neutral, PublicKeyToken=a4952c8df86d6e8c, processorArchitecture=x64" Condition="'$(Platform)' == 'x64' Or '$(Platform)' == 'AnyCPU'">
+      <HintPath>..\packages\HDF5DotNet.x64.1.8.9\lib\net40\HDF5DotNet.dll</HintPath>
     </Reference>
     <Reference Include="IKVM.OpenJDK.Core, Version=0.44.0.5, Culture=neutral, PublicKeyToken=13235d27fcbfff58, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\IKVM.OpenJDK.Core.dll</HintPath>
+      <HintPath>..\Lib\IKVM.OpenJDK.Core.dll</HintPath>
     </Reference>
     <Reference Include="j2k, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\j2k.dll</HintPath>
+      <HintPath>..\Lib\j2k.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -236,6 +239,7 @@
     <Compile Include="Data\MeteoData\MathParser\NumberExpression.cs" />
     <Compile Include="Data\MeteoData\MathParser\OperatorExpression.cs" />
     <Compile Include="Data\MeteoData\MathParser\ValueType.cs" />
+    <Compile Include="Data\MeteoData\MICAPS\MICAPS131DataInfo.cs" />
     <Compile Include="Data\MeteoData\MICAPS\MICAPS13DataInfo.cs" />
     <Compile Include="Data\MeteoData\MICAPS\MICAPS2DataInfo.cs" />
     <Compile Include="Data\MeteoData\MICAPS\MICAPS3DataInfo.cs" />
@@ -858,10 +862,13 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\wContour\wContour.csproj">
+    <ProjectReference Include="..\wContour_CSharp\wContour.csproj">
       <Project>{d7b062de-dc49-442e-8538-b80897cecbc1}</Project>
       <Name>wContour</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -871,8 +878,10 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  <PropertyGroup>
-    <PostBuildEvent>
-    </PostBuildEvent>
+  <PropertyGroup Condition="'$(Platform)' == 'x86'">
+    <PostBuildEvent>xcopy /s /y "$(SolutionDir)packages\HDF5DotNet.x86.1.8.9\NativeBinaries\*.*" "$(TargetDir)"</PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Platform)' == 'x64' Or '$(Platform)' == 'AnyCPU'">
+    <PostBuildEvent>xcopy /s /y "$(SolutionDir)packages\HDF5DotNet.x64.1.8.9\NativeBinaries\*.*" "$(TargetDir)"</PostBuildEvent>
   </PropertyGroup>
 </Project>
