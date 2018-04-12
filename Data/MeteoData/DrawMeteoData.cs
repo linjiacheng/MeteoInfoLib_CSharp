@@ -1104,11 +1104,16 @@ namespace MeteoInfoC.Data.MeteoData
 
                 PolygonShape aPolygonShape = new PolygonShape();
                 aPolygonShape.Points = pList;
+                aPolygonShape.Extent = MIMath.GetPointsExtent(pList);
                 aPolygonShape.lowValue = aValue;
                 if (aPolygon.HasHoles)
                 {
                     for (int h = 0; h < aPolygon.HoleLines.Count; h++)
                     {
+                        if (aPolygon.HoleLines[h].PointList.Count < 3)
+                        {
+                            continue;
+                        }
                         pList = new List<PointD>();
                         for (int j = 0; j < aPolygon.HoleLines[h].PointList.Count; j++)
                         {
@@ -1131,7 +1136,7 @@ namespace MeteoInfoC.Data.MeteoData
                     aPolygonShape.highValue = cValues[valueIdx + 1];
                 }
                 //aColor = colors[Array.IndexOf(cValues, aValue) + 1];
-                if (!aPolygon.IsHighCenter)
+                if (!aPolygon.IsHighCenter && aPolygon.HighValue == aPolygon.LowValue)
                 {
                     //for (int j = 0; j < colors.Length; j++)
                     //{
