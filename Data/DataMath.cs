@@ -1601,7 +1601,7 @@ namespace MeteoInfoC.Data
         #endregion
 
         #region Wind UV
-        private static void GetUVFromDS(double windDir, double windSpeed, ref double U, ref double V)
+        public static void GetUVFromDS(double windDir, double windSpeed, ref double U, ref double V)
         {
             double dir = windDir + 180;
             if (dir > 360)
@@ -1612,7 +1612,7 @@ namespace MeteoInfoC.Data
             V = windSpeed * Math.Cos(dir);
         }
 
-        private static void GetDSFromUV(double U, double V, ref double windDir, ref double windSpeed)
+        public static void GetDSFromUV(double U, double V, ref double windDir, ref double windSpeed)
         {            
             windSpeed = Math.Sqrt(U * U + V * V);
             if (windSpeed == 0)
