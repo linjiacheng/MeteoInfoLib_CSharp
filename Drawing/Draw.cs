@@ -122,15 +122,28 @@ namespace MeteoInfoC.Drawing
         {
             WindBarb aWB = new WindBarb();
 
-            windSpeed += 1;
+            var calSpeed = 0f;
+            if (windSpeed > 1.0)
+            {
+                calSpeed = windSpeed - 0.0001f;
+                if (Convert.ToInt32(Math.Floor(calSpeed)) % 2 == 0)
+                {
+                    calSpeed += 2;
+                }
+                else
+                {
+                    calSpeed += 1;
+                }
+            }
+
             aWB.windSpeed = windSpeed;
             aWB.angle = windDir;
             aWB.Value = value;
             aWB.size = size;
             aWB.Point = sPoint;
-            aWB.windSpeesLine.W20 = (int)(windSpeed / 20);
-            aWB.windSpeesLine.W4 = (int)((windSpeed - aWB.windSpeesLine.W20 * 20) / 4);
-            aWB.windSpeesLine.W2 = (int)((windSpeed - aWB.windSpeesLine.W20 * 20 -
+            aWB.windSpeesLine.W20 = (int)(calSpeed / 20);
+            aWB.windSpeesLine.W4 = (int)((calSpeed - aWB.windSpeesLine.W20 * 20) / 4);
+            aWB.windSpeesLine.W2 = (int)((calSpeed - aWB.windSpeesLine.W20 * 20 -
                 aWB.windSpeesLine.W4 * 4) / 2);
 
             return aWB;
