@@ -32,7 +32,7 @@ namespace MeteoInfoC.Map
         public MapProperty(MapView aMapView)
         {
             MapControl = aMapView;             
-            m_SmoothingMode = SmoothingMode.Default;            
+            m_SmoothingMode = SmoothingMode.HighQuality;            
         }
         #endregion
 

@@ -190,7 +190,7 @@ namespace MeteoInfoC.Layout
             _mapLayout = mapLayout;          
             _layoutMap = layoutMap;
             _layoutMap.MapViewUpdated += new EventHandler(LayoutMap_MapViewUpdated);
-            _smoothingMode = SmoothingMode.AntiAlias;
+            _smoothingMode = SmoothingMode.HighQuality;
             _layerUpdateType = LayerUpdateTypes.FirstMeteoLayer;
             _legendStyle = LegendStyles.Normal;            
             _title = "";

@@ -451,7 +451,7 @@ namespace MeteoInfoC.Legend
             base.OnPaint(e);
 
             Graphics g = e.Graphics;
-            g.SmoothingMode = SmoothingMode.AntiAlias;
+            g.SmoothingMode = SmoothingMode.HighQuality;
             //g.TextRenderingHint = TextRenderingHint.AntiAliasGridFit;
             DrawMapFrames(g);
         }
@@ -784,7 +784,7 @@ namespace MeteoInfoC.Legend
 
         private void DrawLegendNode(LegendNode aLN, Rectangle rect, Graphics g)
         {
-            g.SmoothingMode = SmoothingMode.AntiAlias;
+            g.SmoothingMode = SmoothingMode.HighQuality;
             Single aSize;
             Point aP = new Point(0, 0);
             Single width, height;
@@ -869,7 +869,7 @@ namespace MeteoInfoC.Legend
 
         private void DrawLegendNode_Old(LegendNode aLN, Rectangle rect, Graphics g)
         {
-            g.SmoothingMode = SmoothingMode.AntiAlias;
+            g.SmoothingMode = SmoothingMode.HighQuality;
             Single aSize;
             Point aP = new Point(0, 0);
             Single width, height;

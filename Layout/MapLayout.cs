@@ -87,7 +87,7 @@ namespace MeteoInfoC.Layout
         private Edge _resizeSelectedEdge = Edge.None;
         private bool _AutoResize = false;
         //private Font _GridFont = new Font("Arial", 8);
-        private SmoothingMode _smoothingMode = SmoothingMode.Default;
+        private SmoothingMode _smoothingMode = SmoothingMode.HighQuality;
         private PointF _pageLocation = new PointF(0, 0);
 
         private Point _mouseDownPoint = new Point(0, 0);
@@ -2412,9 +2412,9 @@ namespace MeteoInfoC.Layout
                 _PageForeColor = ColorTranslator.FromHtml(layout.Attributes["ForeColor"].InnerText);
                 string smStr = layout.Attributes["SmoothingMode"].InnerText;
                 if (smStr.ToLower() == "false")
-                    this.SmoothingMode = SmoothingMode.Default;
+                    this.SmoothingMode = SmoothingMode.HighQuality;
                 else if (smStr.ToLower() == "true")
-                    this.SmoothingMode = SmoothingMode.AntiAlias;
+                    this.SmoothingMode = SmoothingMode.HighQuality;
                 else
                     this.SmoothingMode = (SmoothingMode)Enum.Parse(typeof(SmoothingMode), smStr, true);                          
                 _paperSize.PaperName = layout.Attributes["PaperSizeName"].InnerText;
@@ -4149,7 +4149,7 @@ namespace MeteoInfoC.Layout
                                 if (!_startNewGraphic)
                                 {
                                     //Draw graphic                                    
-                                    g.SmoothingMode = SmoothingMode.AntiAlias;
+                                    g.SmoothingMode = SmoothingMode.HighQuality;
                                     this.Refresh();
                                     PointF[] points = _graphicPoints.ToArray();
                                     Array.Resize(ref points, _graphicPoints.Count + 1);

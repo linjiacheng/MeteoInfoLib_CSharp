@@ -20,6 +20,264 @@ namespace MeteoInfoC.Legend
     /// </summary>
     public static class LegendManage
     {
+        private static Color[] _rainbowColors = new Color[]
+        {
+            Color.FromArgb(129, 31, 240),
+            Color.FromArgb(124, 30, 240),
+            Color.FromArgb(119, 29, 241),
+            Color.FromArgb(114, 27, 242),
+            Color.FromArgb(108, 26, 242),
+            Color.FromArgb(103, 24, 243),
+            Color.FromArgb(97, 23, 244),
+            Color.FromArgb(91, 21, 245),
+            Color.FromArgb(86, 20, 245),
+            Color.FromArgb(80, 18, 246),
+            Color.FromArgb(73, 17, 247),
+            Color.FromArgb(67, 15, 247),
+            Color.FromArgb(61, 14, 248),
+            Color.FromArgb(55, 12, 249),
+            Color.FromArgb(48, 11, 250),
+            Color.FromArgb(42, 9, 250),
+            Color.FromArgb(35, 7, 251),
+            Color.FromArgb(28, 6, 252),
+            Color.FromArgb(21, 4, 252),
+            Color.FromArgb(14, 3, 253),
+            Color.FromArgb(7, 1, 254),
+            Color.FromArgb(0, 0, 255),
+            Color.FromArgb(3, 6, 253),
+            Color.FromArgb(6, 12, 252),
+            Color.FromArgb(10, 18, 250),
+            Color.FromArgb(13, 24, 249),
+            Color.FromArgb(17, 30, 247),
+            Color.FromArgb(20, 36, 246),
+            Color.FromArgb(23, 42, 245),
+            Color.FromArgb(26, 47, 243),
+            Color.FromArgb(29, 52, 242),
+            Color.FromArgb(33, 57, 240),
+            Color.FromArgb(36, 62, 239),
+            Color.FromArgb(39, 67, 237),
+            Color.FromArgb(42, 72, 236),
+            Color.FromArgb(45, 76, 235),
+            Color.FromArgb(48, 81, 233),
+            Color.FromArgb(51, 85, 232),
+            Color.FromArgb(53, 89, 230),
+            Color.FromArgb(56, 93, 229),
+            Color.FromArgb(59, 97, 227),
+            Color.FromArgb(62, 101, 226),
+            Color.FromArgb(65, 105, 225),
+            Color.FromArgb(63, 106, 226),
+            Color.FromArgb(62, 107, 227),
+            Color.FromArgb(60, 108, 229),
+            Color.FromArgb(59, 110, 230),
+            Color.FromArgb(57, 111, 232),
+            Color.FromArgb(56, 113, 233),
+            Color.FromArgb(54, 115, 235),
+            Color.FromArgb(52, 116, 236),
+            Color.FromArgb(51, 118, 237),
+            Color.FromArgb(49, 120, 239),
+            Color.FromArgb(47, 122, 240),
+            Color.FromArgb(46, 123, 242),
+            Color.FromArgb(44, 125, 243),
+            Color.FromArgb(42, 127, 245),
+            Color.FromArgb(41, 130, 246),
+            Color.FromArgb(39, 132, 247),
+            Color.FromArgb(37, 134, 249),
+            Color.FromArgb(35, 136, 250),
+            Color.FromArgb(33, 139, 252),
+            Color.FromArgb(31, 141, 253),
+            Color.FromArgb(29, 144, 255),
+            Color.FromArgb(28, 145, 255),
+            Color.FromArgb(27, 147, 255),
+            Color.FromArgb(25, 149, 255),
+            Color.FromArgb(24, 151, 255),
+            Color.FromArgb(22, 153, 255),
+            Color.FromArgb(21, 155, 255),
+            Color.FromArgb(19, 158, 255),
+            Color.FromArgb(18, 160, 255),
+            Color.FromArgb(17, 162, 255),
+            Color.FromArgb(15, 164, 255),
+            Color.FromArgb(14, 166, 255),
+            Color.FromArgb(12, 169, 255),
+            Color.FromArgb(11, 171, 255),
+            Color.FromArgb(9, 173, 255),
+            Color.FromArgb(8, 176, 255),
+            Color.FromArgb(7, 178, 255),
+            Color.FromArgb(5, 180, 255),
+            Color.FromArgb(4, 183, 255),
+            Color.FromArgb(2, 185, 255),
+            Color.FromArgb(1, 188, 255),
+            Color.FromArgb(0, 191, 255),
+            Color.FromArgb(7, 191, 254),
+            Color.FromArgb(14, 191, 253),
+            Color.FromArgb(21, 191, 252),
+            Color.FromArgb(28, 191, 251),
+            Color.FromArgb(35, 192, 251),
+            Color.FromArgb(41, 192, 250),
+            Color.FromArgb(48, 193, 249),
+            Color.FromArgb(55, 193, 248),
+            Color.FromArgb(62, 194, 248),
+            Color.FromArgb(69, 194, 247),
+            Color.FromArgb(75, 195, 246),
+            Color.FromArgb(82, 196, 245),
+            Color.FromArgb(88, 196, 245),
+            Color.FromArgb(95, 197, 244),
+            Color.FromArgb(101, 198, 243),
+            Color.FromArgb(108, 199, 242),
+            Color.FromArgb(114, 200, 242),
+            Color.FromArgb(121, 201, 241),
+            Color.FromArgb(127, 202, 240),
+            Color.FromArgb(133, 203, 239),
+            Color.FromArgb(140, 205, 239),
+            Color.FromArgb(143, 206, 239),
+            Color.FromArgb(146, 208, 239),
+            Color.FromArgb(149, 209, 240),
+            Color.FromArgb(152, 211, 240),
+            Color.FromArgb(155, 212, 241),
+            Color.FromArgb(158, 214, 241),
+            Color.FromArgb(161, 215, 242),
+            Color.FromArgb(164, 217, 242),
+            Color.FromArgb(168, 218, 243),
+            Color.FromArgb(171, 220, 243),
+            Color.FromArgb(174, 221, 244),
+            Color.FromArgb(177, 222, 244),
+            Color.FromArgb(180, 224, 245),
+            Color.FromArgb(184, 225, 245),
+            Color.FromArgb(187, 227, 246),
+            Color.FromArgb(190, 228, 246),
+            Color.FromArgb(193, 230, 247),
+            Color.FromArgb(197, 231, 247),
+            Color.FromArgb(200, 233, 248),
+            Color.FromArgb(203, 234, 248),
+            Color.FromArgb(207, 236, 249),
+            Color.FromArgb(255, 255, 200),
+            Color.FromArgb(255, 254, 192),
+            Color.FromArgb(255, 254, 185),
+            Color.FromArgb(255, 253, 178),
+            Color.FromArgb(255, 252, 171),
+            Color.FromArgb(255, 251, 164),
+            Color.FromArgb(255, 250, 157),
+            Color.FromArgb(255, 249, 149),
+            Color.FromArgb(255, 248, 142),
+            Color.FromArgb(255, 247, 135),
+            Color.FromArgb(255, 246, 128),
+            Color.FromArgb(255, 244, 121),
+            Color.FromArgb(255, 243, 114),
+            Color.FromArgb(255, 241, 107),
+            Color.FromArgb(255, 239, 99),
+            Color.FromArgb(255, 238, 92),
+            Color.FromArgb(255, 236, 85),
+            Color.FromArgb(255, 234, 78),
+            Color.FromArgb(255, 231, 71),
+            Color.FromArgb(255, 229, 64),
+            Color.FromArgb(255, 227, 57),
+            Color.FromArgb(255, 225, 49),
+            Color.FromArgb(255, 222, 47),
+            Color.FromArgb(255, 220, 45),
+            Color.FromArgb(255, 218, 42),
+            Color.FromArgb(255, 215, 40),
+            Color.FromArgb(255, 213, 38),
+            Color.FromArgb(255, 211, 35),
+            Color.FromArgb(255, 208, 33),
+            Color.FromArgb(255, 206, 30),
+            Color.FromArgb(255, 203, 28),
+            Color.FromArgb(255, 201, 26),
+            Color.FromArgb(255, 198, 23),
+            Color.FromArgb(255, 195, 21),
+            Color.FromArgb(255, 193, 19),
+            Color.FromArgb(255, 190, 16),
+            Color.FromArgb(255, 187, 14),
+            Color.FromArgb(255, 184, 11),
+            Color.FromArgb(255, 181, 9),
+            Color.FromArgb(255, 179, 7),
+            Color.FromArgb(255, 176, 4),
+            Color.FromArgb(255, 173, 2),
+            Color.FromArgb(255, 170, 0),
+            Color.FromArgb(255, 167, 0),
+            Color.FromArgb(255, 164, 0),
+            Color.FromArgb(255, 161, 0),
+            Color.FromArgb(255, 158, 0),
+            Color.FromArgb(255, 155, 0),
+            Color.FromArgb(255, 152, 0),
+            Color.FromArgb(255, 149, 0),
+            Color.FromArgb(255, 147, 0),
+            Color.FromArgb(255, 144, 0),
+            Color.FromArgb(255, 141, 0),
+            Color.FromArgb(255, 138, 0),
+            Color.FromArgb(255, 135, 0),
+            Color.FromArgb(255, 132, 0),
+            Color.FromArgb(255, 129, 0),
+            Color.FromArgb(255, 127, 0),
+            Color.FromArgb(255, 124, 0),
+            Color.FromArgb(255, 121, 0),
+            Color.FromArgb(255, 118, 0),
+            Color.FromArgb(255, 115, 0),
+            Color.FromArgb(255, 112, 0),
+            Color.FromArgb(255, 110, 0),
+            Color.FromArgb(255, 104, 0),
+            Color.FromArgb(255, 99, 0),
+            Color.FromArgb(255, 94, 0),
+            Color.FromArgb(255, 89, 0),
+            Color.FromArgb(255, 83, 0),
+            Color.FromArgb(255, 78, 0),
+            Color.FromArgb(255, 73, 0),
+            Color.FromArgb(255, 68, 0),
+            Color.FromArgb(255, 62, 0),
+            Color.FromArgb(255, 57, 0),
+            Color.FromArgb(255, 52, 0),
+            Color.FromArgb(255, 47, 0),
+            Color.FromArgb(255, 41, 0),
+            Color.FromArgb(255, 36, 0),
+            Color.FromArgb(255, 31, 0),
+            Color.FromArgb(255, 26, 0),
+            Color.FromArgb(255, 20, 0),
+            Color.FromArgb(255, 15, 0),
+            Color.FromArgb(255, 10, 0),
+            Color.FromArgb(255, 5, 0),
+            Color.FromArgb(255, 0, 0),
+            Color.FromArgb(252, 0, 0),
+            Color.FromArgb(249, 0, 0),
+            Color.FromArgb(247, 0, 0),
+            Color.FromArgb(244, 0, 0),
+            Color.FromArgb(241, 0, 0),
+            Color.FromArgb(239, 0, 0),
+            Color.FromArgb(236, 0, 0),
+            Color.FromArgb(234, 0, 0),
+            Color.FromArgb(231, 0, 0),
+            Color.FromArgb(228, 0, 0),
+            Color.FromArgb(226, 0, 0),
+            Color.FromArgb(223, 0, 0),
+            Color.FromArgb(220, 0, 0),
+            Color.FromArgb(218, 0, 0),
+            Color.FromArgb(215, 0, 0),
+            Color.FromArgb(213, 0, 0),
+            Color.FromArgb(210, 0, 0),
+            Color.FromArgb(207, 0, 0),
+            Color.FromArgb(205, 0, 0),
+            Color.FromArgb(202, 0, 0),
+            Color.FromArgb(200, 0, 0),
+            Color.FromArgb(202, 6, 6),
+            Color.FromArgb(205, 13, 13),
+            Color.FromArgb(207, 20, 20),
+            Color.FromArgb(210, 27, 27),
+            Color.FromArgb(213, 35, 35),
+            Color.FromArgb(215, 43, 43),
+            Color.FromArgb(218, 50, 50),
+            Color.FromArgb(220, 58, 58),
+            Color.FromArgb(223, 66, 66),
+            Color.FromArgb(226, 75, 75),
+            Color.FromArgb(228, 83, 83),
+            Color.FromArgb(231, 92, 92),
+            Color.FromArgb(234, 101, 101),
+            Color.FromArgb(236, 110, 110),
+            Color.FromArgb(239, 119, 119),
+            Color.FromArgb(241, 128, 128),
+            Color.FromArgb(244, 138, 138),
+            Color.FromArgb(247, 147, 147),
+            Color.FromArgb(249, 157, 157),
+            Color.FromArgb(252, 167, 167),
+            Color.FromArgb(255, 178, 178)
+        };
+
         #region Methods       
         /// <summary>
         /// Create legend scheme from grid data
@@ -874,7 +1132,7 @@ namespace MeteoInfoC.Legend
         /// <returns></returns>
         public static Color[] CreateRainBowColors(int cNum)
         {
-            if (cNum > 13)
+            if (cNum > _rainbowColors.Length)
             {
                 return GetRainBowColors_HSL(cNum);
                 //return GetRainBowColors_HSV(cNum);
@@ -882,83 +1140,13 @@ namespace MeteoInfoC.Legend
 
             ArrayList colorList = new ArrayList();
 
-            colorList.Add(Color.FromArgb(160, 0, 200));
-            colorList.Add(Color.FromArgb(110, 0, 220));
-            colorList.Add(Color.FromArgb(30, 60, 255));
-            colorList.Add(Color.FromArgb(0, 160, 255));
-            colorList.Add(Color.FromArgb(0, 200, 200));
-            colorList.Add(Color.FromArgb(0, 210, 140));
-            colorList.Add(Color.FromArgb(0, 220, 0));
-            colorList.Add(Color.FromArgb(160, 230, 50));
-            colorList.Add(Color.FromArgb(230, 220, 50));
-            colorList.Add(Color.FromArgb(230, 175, 45));
-            colorList.Add(Color.FromArgb(240, 130, 40));
-            colorList.Add(Color.FromArgb(250, 60, 60));
-            colorList.Add(Color.FromArgb(240, 0, 130));
-
-            switch (cNum)
-            {
-                case 12:
-                    colorList.Remove(Color.FromArgb(0, 210, 140));
-                    break;
-                case 11:
-                    colorList.Remove(Color.FromArgb(0, 210, 140));
-                    colorList.Remove(Color.FromArgb(30, 60, 255));
-                    break;
-                case 10:
-                    colorList.Remove(Color.FromArgb(0, 210, 140));
-                    colorList.Remove(Color.FromArgb(30, 60, 255));
-                    colorList.Remove(Color.FromArgb(230, 175, 45));
-                    break;
-                case 9:
-                    colorList.Remove(Color.FromArgb(0, 210, 140));
-                    colorList.Remove(Color.FromArgb(30, 60, 255));
-                    colorList.Remove(Color.FromArgb(230, 175, 45));
-                    colorList.Remove(Color.FromArgb(160, 230, 50));
-                    break;
-                case 8:
-                    colorList.Remove(Color.FromArgb(0, 210, 140));
-                    colorList.Remove(Color.FromArgb(30, 60, 255));
-                    colorList.Remove(Color.FromArgb(230, 175, 45));
-                    colorList.Remove(Color.FromArgb(160, 230, 50));
-                    colorList.Remove(Color.FromArgb(110, 0, 220));
-                    break;
-                case 7:
-                    colorList.Remove(Color.FromArgb(0, 210, 140));
-                    colorList.Remove(Color.FromArgb(30, 60, 255));
-                    colorList.Remove(Color.FromArgb(230, 175, 45));
-                    colorList.Remove(Color.FromArgb(160, 230, 50));
-                    colorList.Remove(Color.FromArgb(110, 0, 220));
-                    colorList.Remove(Color.FromArgb(0, 200, 200));
-                    break;
-                case 6:
-                    colorList.Remove(Color.FromArgb(0, 210, 140));
-                    colorList.Remove(Color.FromArgb(30, 60, 255));
-                    colorList.Remove(Color.FromArgb(230, 175, 45));
-                    colorList.Remove(Color.FromArgb(160, 230, 50));
-                    colorList.Remove(Color.FromArgb(110, 0, 220));
-                    colorList.Remove(Color.FromArgb(0, 200, 200));
-                    colorList.Remove(Color.FromArgb(240, 130, 40));
-                    break;
-                case 5:
-                    colorList.Remove(Color.FromArgb(0, 210, 140));
-                    colorList.Remove(Color.FromArgb(30, 60, 255));
-                    colorList.Remove(Color.FromArgb(230, 175, 45));
-                    colorList.Remove(Color.FromArgb(160, 230, 50));
-                    colorList.Remove(Color.FromArgb(110, 0, 220));
-                    colorList.Remove(Color.FromArgb(0, 200, 200));
-                    colorList.Remove(Color.FromArgb(240, 130, 40));
-                    colorList.Remove(Color.FromArgb(160, 0, 200));
-                    break;
-            }
-
-            Color[] colors = new Color[cNum];
             for (int i = 0; i < cNum; i++)
             {
-                colors[i] = (Color)colorList[i];
+                int delta = _rainbowColors.Length / (cNum + 1);
+                colorList.Add(_rainbowColors[(i + 1) * delta]);
             }
 
-            return colors;
+            return colorList.ToArray(typeof(Color)) as Color[];
         }
 
         /// <summary>

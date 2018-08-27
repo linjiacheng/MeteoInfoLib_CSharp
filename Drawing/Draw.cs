@@ -1982,7 +1982,7 @@ namespace MeteoInfoC.Drawing
                 if (aPLB.DrawSymbol)
                 {
                     SmoothingMode oldSMode = g.SmoothingMode;
-                    g.SmoothingMode = SmoothingMode.AntiAlias;
+                    g.SmoothingMode = SmoothingMode.HighQuality;
                     for (int i = 0; i < points.Length; i++)
                     {
                         if (i % aPLB.SymbolInterval == 0)
@@ -2152,7 +2152,7 @@ namespace MeteoInfoC.Drawing
                 if (aPLB.DrawSymbol)
                 {
                     SmoothingMode oldSMode = g.SmoothingMode;
-                    g.SmoothingMode = SmoothingMode.AntiAlias;
+                    g.SmoothingMode = SmoothingMode.HighQuality;
                     for (i = 0; i < points.Length; i++)
                     {
                         if (i % aPLB.SymbolInterval == 0)

@@ -23,7 +23,7 @@ namespace MeteoInfoC.Layout
         private LayoutMap _layoutMap = null;
         private bool _IsPaint;
         private Graphic _graphic;
-        private SmoothingMode _smoothingMode = SmoothingMode.Default;
+        private SmoothingMode _smoothingMode = SmoothingMode.HighQuality;
         private bool _isTitle = false;
         private bool _updatingSize = false;
 
@@ -413,7 +413,7 @@ namespace MeteoInfoC.Layout
                     {
                         PointBreak aPB = (PointBreak)_graphic.Legend;
                         //PointF aPoint = new PointF(this.Left + (float)this.Width / 2, this.Top + (float)this.Height / 2);
-                        g.SmoothingMode = SmoothingMode.AntiAlias;
+                        g.SmoothingMode = SmoothingMode.HighQuality;
                         Draw.DrawPoint(aPoint, aPB, g);
                         g.SmoothingMode = _smoothingMode;
                     }
@@ -483,7 +483,7 @@ namespace MeteoInfoC.Layout
                         float size = aPB.Size;
                         aPB.Size = aPB.Size * zoom;
                         //PointF aPoint = new PointF(this.Left + (float)this.Width / 2, this.Top + (float)this.Height / 2);
-                        g.SmoothingMode = SmoothingMode.AntiAlias;
+                        g.SmoothingMode = SmoothingMode.HighQuality;
                         Draw.DrawPoint(aPoint, aPB, g);
                         aPB.Size = size;
                         g.SmoothingMode = _smoothingMode;

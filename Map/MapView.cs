@@ -120,8 +120,8 @@ namespace MeteoInfoC.Map
         private int _yShift = 0;
                         
         //private MapProperty m_MapProperty;
-        private SmoothingMode _smoothingMode = SmoothingMode.Default;
-        private SmoothingMode _pointSmoothingMode = SmoothingMode.AntiAlias;
+        private SmoothingMode _smoothingMode = SmoothingMode.HighQuality;
+        private SmoothingMode _pointSmoothingMode = SmoothingMode.HighQuality;
         private MaskOut _maskOut;
         private GraphicsPath _maskOutGraphicsPath = new GraphicsPath();
         private bool _highSpeedWheelZoom = false;               
@@ -235,7 +235,7 @@ namespace MeteoInfoC.Map
                 if (value != SmoothingMode.Invalid)
                 {
                     _smoothingMode = value;
-                    if (_smoothingMode == SmoothingMode.AntiAlias || _smoothingMode == SmoothingMode.HighQuality)
+                    if (_smoothingMode == SmoothingMode.HighQuality || _smoothingMode == SmoothingMode.HighQuality)
                         _pointSmoothingMode = value;
                     PaintLayers();
                 }
@@ -3795,7 +3795,7 @@ namespace MeteoInfoC.Map
         private void DrawPointLayer_back(VectorLayer aLayer, Graphics g, double LonShift)
         {
             SmoothingMode aSM = g.SmoothingMode;
-            g.SmoothingMode = SmoothingMode.AntiAlias;
+            g.SmoothingMode = SmoothingMode.HighQuality;
             int shapeIdx = 0;
             Single X, Y;
             X = 0;
@@ -4401,7 +4401,7 @@ namespace MeteoInfoC.Map
         //    if (aPLB.DrawSymbol)
         //    {
         //        SmoothingMode oldSMode = g.SmoothingMode;
-        //        g.SmoothingMode = SmoothingMode.AntiAlias;
+        //        g.SmoothingMode = SmoothingMode.HighQuality;
         //        for (int i = 0; i < Points.Length; i++)
         //        {
         //            if (i % aPLB.SymbolInterval == 0)
@@ -4527,7 +4527,7 @@ namespace MeteoInfoC.Map
             if (aPLB.DrawSymbol)
             {
                 SmoothingMode oldSMode = g.SmoothingMode;
-                g.SmoothingMode = SmoothingMode.AntiAlias;
+                g.SmoothingMode = SmoothingMode.HighQuality;
                 for (int i = 0; i < Points.Length; i++)
                 {
                     if (i % aPLB.SymbolInterval == 0)
@@ -4655,7 +4655,7 @@ namespace MeteoInfoC.Map
         //    if (aPLB.DrawSymbol)
         //    {
         //        SmoothingMode oldSMode = g.SmoothingMode;
-        //        g.SmoothingMode = SmoothingMode.AntiAlias;
+        //        g.SmoothingMode = SmoothingMode.HighQuality;
         //        for (int i = 0; i < Points.Length; i++)
         //        {
         //            if (i % aPLB.SymbolInterval == 0)
@@ -8592,7 +8592,7 @@ namespace MeteoInfoC.Map
                     return;
 
                 SmoothingMode aSM = g.SmoothingMode;
-                g.SmoothingMode = SmoothingMode.AntiAlias;
+                g.SmoothingMode = SmoothingMode.HighQuality;
                 foreach (Graphic aGraphic in _graphicCollection.GraphicList)
                 {
                     DrawGraphic(g, aGraphic, lonShift);                    
@@ -10712,7 +10712,7 @@ namespace MeteoInfoC.Map
                         aGraphic.Shape = aPS;
                         aGraphic.Legend = (PointBreak)_defPointBreak.Clone();
                         _graphicCollection.Add(aGraphic);
-                        g.SmoothingMode = SmoothingMode.AntiAlias;
+                        g.SmoothingMode = SmoothingMode.HighQuality;
                         DrawGraphic(g, aGraphic, 0);
                         break;
                     case MouseTools.New_Label:
@@ -11235,7 +11235,7 @@ namespace MeteoInfoC.Map
                                 if (!_startNewGraphic)
                                 {
                                     //Draw graphic                                    
-                                    g.SmoothingMode = SmoothingMode.AntiAlias;
+                                    g.SmoothingMode = SmoothingMode.HighQuality;
                                     this.Refresh();
                                     PointF[] points = _graphicPoints.ToArray();
                                     Array.Resize(ref points, _graphicPoints.Count + 1);

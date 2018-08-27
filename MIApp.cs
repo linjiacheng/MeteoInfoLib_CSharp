@@ -1597,9 +1597,9 @@ namespace MeteoInfoC
         public void SetAntiAlias(bool isAntiAlias)
         {
             if (isAntiAlias)
-                _mapLayout.SmoothingMode = SmoothingMode.AntiAlias;
+                _mapLayout.SmoothingMode = SmoothingMode.HighQuality;
             else
-                _mapLayout.SmoothingMode = SmoothingMode.Default;
+                _mapLayout.SmoothingMode = SmoothingMode.HighQuality;
         }
 
         /// <summary>

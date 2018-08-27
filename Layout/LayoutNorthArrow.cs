@@ -38,7 +38,7 @@ namespace MeteoInfoC.Layout
             Height = 50;
 
             _layoutMap = layoutMap;
-            _smoothingMode = SmoothingMode.AntiAlias;
+            _smoothingMode = SmoothingMode.HighQuality;
             _drawNeatLine = false;
             _neatLineColor = Color.Black;
             _neatLineSize = 1;

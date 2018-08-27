@@ -42,7 +42,7 @@ namespace MeteoInfoC.Layout
             Height = 50;
             //BackColor = Color.YellowGreen;
             _layoutMap = layoutMap;
-            _smoothingMode = SmoothingMode.AntiAlias;
+            _smoothingMode = SmoothingMode.HighQuality;
             _scaleBarType = ScaleBarTypes.ScaleLine1;
             _drawNeatLine = false;
             _neatLineColor = Color.Black;

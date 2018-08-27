@@ -169,7 +169,7 @@ namespace MeteoInfoC.Legend
             base.OnPaint(e);
 
             Graphics g = e.Graphics;
-            g.SmoothingMode = SmoothingMode.AntiAlias;
+            g.SmoothingMode = SmoothingMode.HighQuality;
             g.TextRenderingHint = TextRenderingHint.AntiAliasGridFit;
             PaintGraphics(g);
             //g.Dispose();

@@ -678,7 +678,7 @@ namespace MeteoInfoC.Legend
 
         private void DrawBreakSymbol(ColorBreak aCB, ShapeTypes shapeType, Rectangle rect, bool selected, Graphics g)
         {
-            g.SmoothingMode = SmoothingMode.AntiAlias;
+            g.SmoothingMode = SmoothingMode.HighQuality;
             Single aSize;
             PointF aP = new Point(0, 0);
             Single width, height;            
