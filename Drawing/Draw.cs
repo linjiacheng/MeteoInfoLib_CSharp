@@ -236,6 +236,11 @@ namespace MeteoInfoC.Drawing
             }
             if (aWB.windSpeesLine.W2 > 0)
             {
+                if (aWB.windSpeesLine.W20 <= 0 && aWB.windSpeesLine.W4 <= 0)
+                {
+                    eP.X = (Single)(eP.X - aLen / 8 * Math.Sin((aWB.angle) * PI / 180));
+                    eP.Y = (Single)(eP.Y + aLen / 8 * Math.Cos((aWB.angle) * PI / 180));
+                }
                 len = len / 2;
                 eP1.X = (Single)(eP.X - len * Math.Sin((aWB.angle - 120) * PI / 180));
                 eP1.Y = (Single)(eP.Y + len * Math.Cos((aWB.angle - 120) * PI / 180));
@@ -301,6 +306,11 @@ namespace MeteoInfoC.Drawing
             }
             if (aWB.windSpeesLine.W2 > 0)
             {
+                if (aWB.windSpeesLine.W20 <= 0 && aWB.windSpeesLine.W4 <= 0)
+                {
+                    eP.X = (Single)(eP.X - aLen / 8 * Math.Sin((aWB.angle) * PI / 180));
+                    eP.Y = (Single)(eP.Y + aLen / 8 * Math.Cos((aWB.angle) * PI / 180));
+                }
                 len = len / 2;
                 eP1.X = (Single)(eP.X - len * Math.Sin((aWB.angle - 120) * PI / 180));
                 eP1.Y = (Single)(eP.Y + len * Math.Cos((aWB.angle - 120) * PI / 180));
